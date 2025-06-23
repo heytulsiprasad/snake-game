@@ -15,6 +15,7 @@ export const useLeaderboard = () => {
         .limit(10)
 
       if (error) throw error
+      console.log('Leaderboard data:', data)
       setLeaderboard(data || [])
     } catch (error) {
       console.error('Error fetching leaderboard:', error)

@@ -12,7 +12,7 @@ interface LeaderboardPageProps {
 }
 
 export const LeaderboardPage: React.FC<LeaderboardPageProps> = ({ user, onBack }) => {
-  const { leaderboard } = useLeaderboard()
+  const { leaderboard, loading } = useLeaderboard()
 
   return (
     <div className="min-h-screen bg-game-bg p-4">
@@ -42,10 +42,16 @@ export const LeaderboardPage: React.FC<LeaderboardPageProps> = ({ user, onBack }
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.1 }}
         >
-          <LeaderboardTable
-            entries={leaderboard}
-            currentUserId={user?.id}
-          />
+          {loading ? (
+            <div className="bg-gray-800 rounded-lg p-6 border border-gray-700 text-center">
+              <p className="text-gray-400">Loading leaderboard...</p>
+            </div>
+          ) : (
+            <LeaderboardTable
+              entries={leaderboard}
+              currentUserId={user?.id}
+            />
+          )}
         </motion.div>
 
         {/* Stats Summary */}

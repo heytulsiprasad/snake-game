@@ -23,8 +23,8 @@ export const LeaderboardTable: FC<LeaderboardTableProps> = ({ entries, currentUs
   }
 
   return (
-    <div className="bg-gray-800 rounded-lg p-6">
-      <h2 className="text-2xl font-bold mb-6 flex items-center">
+    <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
+      <h2 className="text-2xl font-bold mb-6 flex items-center text-white">
         <Trophy className="w-8 h-8 mr-2 text-yellow-500" />
         Global Leaderboard
       </h2>
@@ -47,13 +47,13 @@ export const LeaderboardTable: FC<LeaderboardTableProps> = ({ entries, currentUs
                 {getRankIcon(index + 1)}
               </div>
               <div>
-                <p className="font-semibold">{entry.username}</p>
+                <p className="font-semibold text-white">{entry.username}</p>
                 <p className="text-sm text-gray-400">
                   {new Date(entry.achieved_at).toLocaleDateString()}
                 </p>
               </div>
             </div>
-            <div className="text-2xl font-bold">{entry.score}</div>
+            <div className="text-2xl font-bold text-green-500">{entry.score}</div>
           </motion.div>
         ))}
 
