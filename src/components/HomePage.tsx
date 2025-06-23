@@ -1,14 +1,15 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Play, Trophy, LogIn } from 'lucide-react'
+import { Play, Trophy, LogIn, BarChart3 } from 'lucide-react'
 import { Button } from './UI/Button'
 
 interface HomePageProps {
   onPlayAsGuest: () => void
   onSignIn: () => void
+  onViewLeaderboard: () => void
 }
 
-export const HomePage: React.FC<HomePageProps> = ({ onPlayAsGuest, onSignIn }) => {
+export const HomePage: React.FC<HomePageProps> = ({ onPlayAsGuest, onSignIn, onViewLeaderboard }) => {
   return (
     <div className="min-h-screen bg-game-bg flex items-center justify-center p-4">
       <motion.div
@@ -69,6 +70,23 @@ export const HomePage: React.FC<HomePageProps> = ({ onPlayAsGuest, onSignIn }) =
               Play as Guest
             </Button>
           </div>
+
+          {/* View Leaderboard */}
+          <button
+            onClick={onViewLeaderboard}
+            className="bg-gray-800 rounded-lg p-4 border border-gray-700 hover:border-gray-600 transition-all text-left group"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <BarChart3 className="w-8 h-8 text-purple-500" />
+                <div>
+                  <h3 className="font-semibold">View Leaderboard</h3>
+                  <p className="text-gray-400 text-sm">See top players</p>
+                </div>
+              </div>
+              <span className="text-gray-500 group-hover:text-gray-400 transition-colors">→</span>
+            </div>
+          </button>
         </motion.div>
 
         {/* Features */}

@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import { HomePage } from './components/HomePage'
 import { GamePage } from './components/GamePage'
+import { LeaderboardPage } from './components/LeaderboardPage'
 import { AuthModal } from './components/Auth/AuthModal'
 import { useAuth } from './hooks/useAuth'
 import { useLeaderboard } from './hooks/useLeaderboard'
 import { supabase } from './lib/supabase'
 import type { Profile } from './lib/supabase'
 
-type AppState = 'home' | 'game'
+type AppState = 'home' | 'game' | 'leaderboard'
 
 function App() {
   const [appState, setAppState] = useState<AppState>('home')
@@ -50,12 +51,17 @@ function App() {
     setAppState('home')
   }
 
+  const handleViewLeaderboard = () => {
+    setAppState('leaderboard')
+  }
+
   return (
     <>
       {appState === 'home' && (
         <HomePage
           onPlayAsGuest={handlePlayAsGuest}
           onSignIn={handleSignIn}
+          onViewLeaderboard={handleViewLeaderboard}
         />
       )}
 
@@ -65,6 +71,13 @@ function App() {
           userProfile={userProfile}
           onBack={handleBackToHome}
           updateLeaderboard={updateLeaderboard}
+        />
+      )}
+
+      {appState === 'leaderboard' && (
+        <LeaderboardPage
+          user={user}
+          onBack={handleBackToHome}
         />
       )}
 

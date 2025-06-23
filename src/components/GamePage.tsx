@@ -3,9 +3,11 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, User, Trophy, Timer, Apple } from 'lucide-react'
 import { GameBoard } from './Game/GameBoard'
 import { GameControls } from './Game/GameControls'
+import { LeaderboardTable } from './Leaderboard/LeaderboardTable'
 import { Button } from './UI/Button'
 import { useGame } from '../hooks/useGame'
 import { useGameSession } from '../hooks/useGameSession'
+import { useLeaderboard } from '../hooks/useLeaderboard'
 import type { User as SupabaseUser } from '@supabase/supabase-js'
 import type { Profile } from '../lib/supabase'
 import { supabase } from '../lib/supabase'
@@ -20,6 +22,8 @@ interface GamePageProps {
 export const GamePage: React.FC<GamePageProps> = ({ user, userProfile, onBack, updateLeaderboard }) => {
   const { gameState, startGame, pauseGame, changeDirection, setDifficulty } = useGame()
   const { saveGameSession } = useGameSession()
+  const { leaderboard } = useLeaderboard()
+  const [showLeaderboard, setShowLeaderboard] = useState(false)
   const [sessionStats, setSessionStats] = useState({
     gamesPlayed: 0,
     highScore: 0,
@@ -73,7 +77,8 @@ export const GamePage: React.FC<GamePageProps> = ({ user, userProfile, onBack, u
   const [boardScale, setBoardScale] = useState(1)
   useEffect(() => {
     const updateScale = () => {
-      const maxWidth = window.innerWidth - 32 // padding
+      const padding = showLeaderboard ? 400 : 32 // More padding when leaderboard is shown
+      const maxWidth = window.innerWidth - padding
       const maxHeight = window.innerHeight - 200 // info bar + controls
       const boardSize = 600 // 20 * 30
       const scale = Math.min(maxWidth / boardSize, maxHeight / boardSize, 1)
@@ -83,7 +88,7 @@ export const GamePage: React.FC<GamePageProps> = ({ user, userProfile, onBack, u
     updateScale()
     window.addEventListener('resize', updateScale)
     return () => window.removeEventListener('resize', updateScale)
-  }, [])
+  }, [showLeaderboard])
 
   return (
     <div className="min-h-screen bg-game-bg flex flex-col">
@@ -104,6 +109,16 @@ export const GamePage: React.FC<GamePageProps> = ({ user, userProfile, onBack, u
             </Button>
             <h1 className="text-xl font-bold text-green-500">Snake Game</h1>
           </div>
+
+          {/* Toggle Leaderboard Button */}
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={() => setShowLeaderboard(!showLeaderboard)}
+          >
+            <Trophy className="w-4 h-4 mr-1" />
+            {showLeaderboard ? 'Hide' : 'Show'} Leaderboard
+          </Button>
 
           {/* Stats */}
           <div className="flex items-center gap-6 text-sm">
@@ -138,8 +153,9 @@ export const GamePage: React.FC<GamePageProps> = ({ user, userProfile, onBack, u
       </motion.div>
 
       {/* Game Area */}
-      <div className="flex-1 flex items-center justify-center p-4">
-        <div className="flex flex-col items-center gap-6">
+      <div className="flex-1 flex flex-col lg:flex-row p-4">
+        <div className="flex-1 flex items-center justify-center">
+          <div className="flex flex-col items-center gap-6">
           <div style={{ transform: `scale(${boardScale})` }}>
             <GameBoard
               gameState={gameState}
@@ -175,7 +191,23 @@ export const GamePage: React.FC<GamePageProps> = ({ user, userProfile, onBack, u
           >
             <p>Use Arrow Keys or WASD to move • Space to pause/resume</p>
           </motion.div>
+          </div>
         </div>
+
+        {/* Leaderboard Sidebar */}
+        {showLeaderboard && (
+          <motion.div
+            className="w-full lg:w-80 lg:ml-4 mt-4 lg:mt-0"
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 100, opacity: 0 }}
+          >
+            <LeaderboardTable
+              entries={leaderboard}
+              currentUserId={user?.id}
+            />
+          </motion.div>
+        )}
       </div>
     </div>
   )
