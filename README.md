@@ -1,54 +1,135 @@
-# React + TypeScript + Vite
+# 🐍 Snake Game with MCP Integration
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern Snake game built with React, TypeScript, and Supabase, showcasing comprehensive MCP (Model Context Protocol) integration for authentication, data persistence, and leaderboards.
 
-Currently, two official plugins are available:
+## 🎮 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Classic Snake Gameplay**: Navigate the snake to collect food and grow longer
+- **Authentication**: User registration and login via Supabase Auth
+- **Game History**: Track your games and scores in the cloud
+- **Leaderboard**: Compete with other players globally
+- **Difficulty Levels**: Multiple difficulty settings for varied challenge
+- **Responsive Design**: Works on desktop and mobile devices
 
-## Expanding the ESLint configuration
+## 🛠️ Technology Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend**: React + TypeScript + Vite
+- **Styling**: Tailwind CSS
+- **Backend**: Supabase (Authentication, Database, Real-time)
+- **MCP Tools**: 
+  - Supabase MCP for backend operations
+  - Context7 for documentation
+  - GitHub MCP for version control
+  - Memory MCP for persistence
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 📋 Prerequisites
+
+- Node.js (v18 or higher)
+- npm or yarn
+- Supabase account
+
+## 🚀 Setup Instructions
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/snake-game.git
+   cd snake-game
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Environment Configuration**
+   - Copy `.env.example` to `.env`
+   - Add your Supabase credentials:
+     ```
+     VITE_SUPABASE_URL=your_supabase_url
+     VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+     ```
+
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Build for production**
+   ```bash
+   npm run build
+   ```
+
+## 🗄️ Database Schema
+
+### Users Table
+- `id`: UUID (Primary Key)
+- `email`: String
+- `username`: String
+- `created_at`: Timestamp
+
+### Game History Table
+- `id`: UUID (Primary Key)
+- `user_id`: UUID (Foreign Key)
+- `score`: Integer
+- `level`: Integer
+- `duration`: Integer (seconds)
+- `created_at`: Timestamp
+
+### Leaderboard View
+- Aggregated view of top scores by user
+
+## 🎯 Game Controls
+
+- **Arrow Keys**: Move the snake (Up, Down, Left, Right)
+- **WASD**: Alternative movement controls
+- **Space**: Pause/Resume game
+- **R**: Restart game
+
+## 🏗️ Project Structure
+
+```
+snake-game/
+├── src/
+│   ├── components/
+│   │   ├── Game/
+│   │   ├── Auth/
+│   │   └── UI/
+│   ├── hooks/
+│   ├── lib/
+│   │   └── supabase.ts
+│   ├── types/
+│   └── utils/
+├── public/
+├── tests/
+└── package.json
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🧪 Testing
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+# Run unit tests
+npm run test
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+# Run e2e tests
+npm run test:e2e
 ```
+
+## 📝 License
+
+MIT License - see LICENSE file for details
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 🐛 Bug Reports
+
+Please report bugs via GitHub Issues with:
+- Steps to reproduce
+- Expected behavior
+- Actual behavior
+- Browser/OS information
