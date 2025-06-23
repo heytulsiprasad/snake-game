@@ -1,68 +1,55 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
+@layer base {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --game-bg: #1a1f2e;
+    --game-board: #0f1419;
+    --snake-head: #22c55e;
+    --snake-body: #16a34a;
+    --food: #ef4444;
+    --power-up: #f59e0b;
   }
-  a:hover {
-    color: #747bff;
+
+  body {
+    @apply bg-game-bg text-white;
+    font-family: system-ui, -apple-system, sans-serif;
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+@layer components {
+  .game-board {
+    @apply bg-game-board rounded-lg shadow-2xl;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  }
+
+  .btn-primary {
+    @apply bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95;
+  }
+
+  .score-display {
+    @apply text-2xl font-bold bg-gray-800 px-4 py-2 rounded-lg;
+  }
+
+  .auth-input {
+    @apply w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-green-500 transition-colors;
+  }
+}
+
+@layer utilities {
+  .prevent-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .touch-action-none {
+    touch-action: none;
   }
 }
