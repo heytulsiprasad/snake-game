@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { supabase, LeaderboardEntry } from '../lib/supabase'
+import { supabase } from '../lib/supabase'
+import type { LeaderboardEntry } from '../lib/supabase'
 
 export const useLeaderboard = () => {
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([])

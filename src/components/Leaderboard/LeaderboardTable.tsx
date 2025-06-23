@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { motion } from 'framer-motion'
 import { Trophy, Medal, Award } from 'lucide-react'
-import { LeaderboardEntry } from '../../lib/supabase'
+import type { LeaderboardEntry } from '../../lib/supabase'
 
 interface LeaderboardTableProps {
   entries: LeaderboardEntry[]

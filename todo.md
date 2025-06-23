@@ -134,6 +134,12 @@
 - [ ] Contributing guidelines
 - [ ] Architecture decisions record
 
+## Package Manager Migration 📦
+- [x] Migrate from npm to pnpm
+- [x] Update README with pnpm commands
+- [x] Create .npmrc configuration
+- [x] Test all commands with pnpm
+
 ---
 
 **Note**: This is a collaborative TODO list. Please mark items as completed when done and add any new tasks as needed. Use git commits to track progress.

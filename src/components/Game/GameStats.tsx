@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { motion } from 'framer-motion'
 import { Trophy, Apple, Clock, Zap } from 'lucide-react'
-import { GameState } from '../../types/game'
+import type { GameState } from '../../types/game'
 
 interface GameStatsProps {
   gameState: GameState

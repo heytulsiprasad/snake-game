@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { motion } from 'framer-motion'
 import { Play, Pause, RotateCcw, ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
-import { Direction } from '../../types/game'
+import type { Direction } from '../../types/game'
 
 interface GameControlsProps {
   isPaused: boolean

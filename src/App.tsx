@@ -1,4 +1,3 @@
-import React from 'react'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { LogOut, User } from 'lucide-react'
@@ -12,7 +11,8 @@ import { useGame } from './hooks/useGame'
 import { useAuth } from './hooks/useAuth'
 import { useLeaderboard } from './hooks/useLeaderboard'
 import { useGameSession } from './hooks/useGameSession'
-import { supabase, Profile } from './lib/supabase'
+import { supabase } from './lib/supabase'
+import type { Profile } from './lib/supabase'
 
 function App() {
   const [showAuthModal, setShowAuthModal] = useState(false)

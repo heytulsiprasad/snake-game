@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { useState } from 'react'
 import { Modal } from '../UI/Modal'
 import { LoginForm } from './LoginForm'

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Lock, Loader } from 'lucide-react'
@@ -15,7 +15,7 @@ export const LoginForm: FC<LoginFormProps> = ({ onSubmit, onSwitchToSignup }) =>
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setError('')
     setLoading(true)

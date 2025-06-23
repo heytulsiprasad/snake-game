@@ -1,4 +1,4 @@
-import { Position, Direction, GameState } from '../types/game'
+import type { Position, Direction, GameState } from '../types/game'
 import { GAME_CONFIG } from './constants'
 
 export const createInitialSnake = (): Position[] => {

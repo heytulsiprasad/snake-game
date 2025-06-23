@@ -25,7 +25,7 @@ A modern Snake game built with React, TypeScript, and Supabase, showcasing compr
 ## 📋 Prerequisites
 
 - Node.js (v18 or higher)
-- npm or yarn
+- pnpm (recommended) or npm
 - Supabase account
 
 ## 🚀 Setup Instructions
@@ -38,7 +38,8 @@ A modern Snake game built with React, TypeScript, and Supabase, showcasing compr
 
 2. **Install dependencies**
    ```bash
-   npm install
+   pnpm install
+   # or npm install
    ```
 
 3. **Environment Configuration**
@@ -51,12 +52,14 @@ A modern Snake game built with React, TypeScript, and Supabase, showcasing compr
 
 4. **Run the development server**
    ```bash
-   npm run dev
+   pnpm dev
+   # or npm run dev
    ```
 
 5. **Build for production**
    ```bash
-   npm run build
+   pnpm build
+   # or npm run build
    ```
 
 ## 🗄️ Database Schema
@@ -108,10 +111,12 @@ snake-game/
 
 ```bash
 # Run unit tests
-npm run test
+pnpm test
+# or npm run test
 
 # Run e2e tests
-npm run test:e2e
+pnpm test:e2e
+# or npm run test:e2e
 ```
 
 ## 📝 License

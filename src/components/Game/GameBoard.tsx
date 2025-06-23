@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { GameState } from '../../types/game'
+import type { GameState } from '../../types/game'
 import { GAME_CONFIG } from '../../utils/constants'
 import { getSwipeDirection } from '../../utils/gameLogic'
 

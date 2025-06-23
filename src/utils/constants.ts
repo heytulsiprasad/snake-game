@@ -1,4 +1,4 @@
-import { GameConfig } from '../types/game'
+import type { GameConfig } from '../types/game'
 
 export const GAME_CONFIG: GameConfig = {
   gridSize: 20,

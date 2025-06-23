@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
-import { supabase, GameSession } from '../lib/supabase'
-import { GameState } from '../types/game'
+import { supabase } from '../lib/supabase'
+import type { GameSession } from '../lib/supabase'
+import type { GameState } from '../types/game'
 
 export const useGameSession = () => {
   const saveGameSession = useCallback(async (

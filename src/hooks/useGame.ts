@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { GameState, Direction, GameMode } from '../types/game'
+import type { GameState, Direction, GameMode } from '../types/game'
 import { createInitialSnake, generateRandomFood, moveSnake, isOppositeDirection } from '../utils/gameLogic'
 import { DIFFICULTY_LEVELS } from '../utils/constants'
 
@@ -19,7 +19,7 @@ export const useGame = (gameMode: GameMode = 'classic') => {
     gameMode,
   }))
 
-  const gameLoopRef = useRef<NodeJS.Timer | null>(null)
+  const gameLoopRef = useRef<number | null>(null)
 
   const startGame = useCallback(() => {
     const initialSnake = createInitialSnake()
@@ -66,14 +66,14 @@ export const useGame = (gameMode: GameMode = 'classic') => {
     }
 
     if (!gameState.isPaused && !gameState.isGameOver) {
-      gameLoopRef.current = setInterval(() => {
+      gameLoopRef.current = window.setInterval(() => {
         setGameState(prev => moveSnake(prev))
       }, gameState.speed)
     }
 
     return () => {
       if (gameLoopRef.current) {
-        clearInterval(gameLoopRef.current)
+        window.clearInterval(gameLoopRef.current)
       }
     }
   }, [gameState.isPaused, gameState.isGameOver, gameState.speed])
