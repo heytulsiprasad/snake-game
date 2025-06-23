@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { motion } from 'framer-motion'
 import { Trophy, Apple, Clock, Zap } from 'lucide-react'
 import { GameState } from '../../types/game'
@@ -7,7 +7,7 @@ interface GameStatsProps {
   gameState: GameState
 }
 
-export const GameStats: React.FC<GameStatsProps> = ({ gameState }) => {
+export const GameStats: FC<GameStatsProps> = ({ gameState }) => {
   const gameDuration = Math.floor((Date.now() - gameState.startTime) / 1000)
   const minutes = Math.floor(gameDuration / 60)
   const seconds = gameDuration % 60

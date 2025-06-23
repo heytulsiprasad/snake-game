@@ -15,8 +15,8 @@ export type Profile = {
   avatar_url?: string
   total_score: number
   games_played: number
-  achievements: any[]
-  preferences: Record<string, any>
+  achievements: unknown[]
+  preferences: Record<string, unknown>
   created_at: string
 }
 

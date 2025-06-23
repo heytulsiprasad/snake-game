@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { motion } from 'framer-motion'
 import { Trophy, Medal, Award } from 'lucide-react'
 import { LeaderboardEntry } from '../../lib/supabase'
@@ -8,7 +8,7 @@ interface LeaderboardTableProps {
   currentUserId?: string
 }
 
-export const LeaderboardTable: React.FC<LeaderboardTableProps> = ({ entries, currentUserId }) => {
+export const LeaderboardTable: FC<LeaderboardTableProps> = ({ entries, currentUserId }) => {
   const getRankIcon = (rank: number) => {
     switch (rank) {
       case 1:

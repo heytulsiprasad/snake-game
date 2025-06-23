@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { motion } from 'framer-motion'
 import { Play, Pause, RotateCcw, ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Direction } from '../../types/game'
@@ -12,7 +12,7 @@ interface GameControlsProps {
   onDifficultyChange: (difficulty: 'easy' | 'medium' | 'hard') => void
 }
 
-export const GameControls: React.FC<GameControlsProps> = ({
+export const GameControls: FC<GameControlsProps> = ({
   isPaused,
   isGameOver,
   onStart,

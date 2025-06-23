@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { FC } from 'react'
+import { useState } from 'react'
 import { Modal } from '../UI/Modal'
 import { LoginForm } from './LoginForm'
 import { SignupForm } from './SignupForm'
@@ -9,7 +10,7 @@ interface AuthModalProps {
   onClose: () => void
 }
 
-export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
+export const AuthModal: FC<AuthModalProps> = ({ isOpen, onClose }) => {
   const [isLogin, setIsLogin] = useState(true)
   const { signIn, signUp } = useAuth()
 

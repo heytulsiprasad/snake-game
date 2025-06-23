@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { LogOut, User, Trophy } from 'lucide-react'
+import { LogOut, User } from 'lucide-react'
 import { GameBoard } from './components/Game/GameBoard'
 import { GameStats } from './components/Game/GameStats'
 import { GameControls } from './components/Game/GameControls'
@@ -11,13 +12,13 @@ import { useGame } from './hooks/useGame'
 import { useAuth } from './hooks/useAuth'
 import { useLeaderboard } from './hooks/useLeaderboard'
 import { useGameSession } from './hooks/useGameSession'
-import { supabase } from './lib/supabase'
+import { supabase, Profile } from './lib/supabase'
 
 function App() {
   const [showAuthModal, setShowAuthModal] = useState(false)
-  const [userProfile, setUserProfile] = useState<any>(null)
+  const [userProfile, setUserProfile] = useState<Profile | null>(null)
   const { gameState, startGame, pauseGame, changeDirection, setDifficulty } = useGame()
-  const { user, loading: authLoading, signOut } = useAuth()
+  const { user, signOut } = useAuth()
   const { leaderboard, updateLeaderboard } = useLeaderboard()
   const { saveGameSession } = useGameSession()
 

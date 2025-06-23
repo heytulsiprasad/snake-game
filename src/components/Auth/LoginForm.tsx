@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { FC } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Lock, Loader } from 'lucide-react'
 import { Button } from '../UI/Button'
@@ -8,7 +9,7 @@ interface LoginFormProps {
   onSwitchToSignup: () => void
 }
 
-export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, onSwitchToSignup }) => {
+export const LoginForm: FC<LoginFormProps> = ({ onSubmit, onSwitchToSignup }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -21,8 +22,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, onSwitchToSignup
 
     try {
       await onSubmit(email, password)
-    } catch (err: any) {
-      setError(err.message || 'Failed to sign in')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to sign in')
     } finally {
       setLoading(false)
     }

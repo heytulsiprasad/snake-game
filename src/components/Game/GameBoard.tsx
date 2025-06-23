@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { FC } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { GameState } from '../../types/game'
 import { GAME_CONFIG } from '../../utils/constants'
@@ -9,7 +10,7 @@ interface GameBoardProps {
   onDirectionChange: (direction: 'UP' | 'DOWN' | 'LEFT' | 'RIGHT') => void
 }
 
-export const GameBoard: React.FC<GameBoardProps> = ({ gameState, onDirectionChange }) => {
+export const GameBoard: FC<GameBoardProps> = ({ gameState, onDirectionChange }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(null)
   const boardSize = GAME_CONFIG.gridSize * GAME_CONFIG.cellSize

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { GameState, Direction, GameMode } from '../types/game'
 import { createInitialSnake, generateRandomFood, moveSnake, isOppositeDirection } from '../utils/gameLogic'
-import { GAME_CONFIG, DIFFICULTY_LEVELS } from '../utils/constants'
+import { DIFFICULTY_LEVELS } from '../utils/constants'
 
 export const useGame = (gameMode: GameMode = 'classic') => {
   const [gameState, setGameState] = useState<GameState>(() => ({

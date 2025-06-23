@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { FC, ReactNode } from 'react'
 import { motion } from 'framer-motion'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'danger'
   size?: 'sm' | 'md' | 'lg'
   fullWidth?: boolean
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button: FC<ButtonProps> = ({
   variant = 'primary',
   size = 'md',
   fullWidth = false,
