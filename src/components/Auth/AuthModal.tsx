@@ -12,7 +12,7 @@ interface AuthModalProps {
 
 export const AuthModal: FC<AuthModalProps> = ({ isOpen, onClose }) => {
   const [isLogin, setIsLogin] = useState(true)
-  const { signIn, signUp } = useAuth()
+  const { signIn, signUp, signInWithGoogle } = useAuth()
 
   const handleLogin = async (email: string, password: string) => {
     await signIn(email, password)
@@ -24,17 +24,24 @@ export const AuthModal: FC<AuthModalProps> = ({ isOpen, onClose }) => {
     onClose()
   }
 
+  const handleGoogleSignIn = async () => {
+    await signInWithGoogle()
+    // Google OAuth will redirect, so we don't need to close the modal
+  }
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       {isLogin ? (
         <LoginForm
           onSubmit={handleLogin}
           onSwitchToSignup={() => setIsLogin(false)}
+          onGoogleSignIn={handleGoogleSignIn}
         />
       ) : (
         <SignupForm
           onSubmit={handleSignup}
           onSwitchToLogin={() => setIsLogin(true)}
+          onGoogleSignIn={handleGoogleSignIn}
         />
       )}
     </Modal>

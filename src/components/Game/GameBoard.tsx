@@ -92,6 +92,12 @@ export const GameBoard: FC<GameBoardProps> = ({ gameState, onDirectionChange }) 
   // Handle keyboard input
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
+      // Don't handle game controls if user is typing in an input field
+      const target = e.target as HTMLElement
+      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable) {
+        return
+      }
+
       const directionMap: Record<string, 'UP' | 'DOWN' | 'LEFT' | 'RIGHT'> = {
         ArrowUp: 'UP',
         ArrowDown: 'DOWN',
